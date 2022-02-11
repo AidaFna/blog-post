@@ -1,0 +1,10 @@
+.brand{
+  cursor: pointer;
+}
+
+.link:hover,
+.link:focus,
+.link:active{
+color: black !important;
+text-decoration: none !important; 
+}
