@@ -49,7 +49,7 @@ const Manage = () => {
     // title errors
     if (!title || title.trim() === "") newErrors.title = "cannot be blank!";
     else if (title.length > 50)
-      newErrors.name = "title cannot be more than 50 characters!";
+      newErrors.title = "title cannot be more than 50 characters!";
     // content errors
     if (!content || content.trim() === "")
       newErrors.content = "cannot be blank!";
