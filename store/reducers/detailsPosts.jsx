@@ -7,14 +7,20 @@ export const detailsPosts = (state = initialState, action) => {
   return state;
 };
 
-export const titlePosts = (state = initialState, action) => {
-  if (action.type === "SET_TITLE_POSTS") {
+export const published = (state = initialState, action) => {
+  if (action.type === "SET_PUBLISHED_POSTS") {
     if (action.payload) return action.payload;
   }
   return state;
 };
-export const contentPosts = (state = initialState, action) => {
-  if (action.type === "SET_TITLE_POSTS") {
+export const created = (state = initialState, action) => {
+  if (action.type === "SET_CREATED_POSTS") {
+    if (action.payload) return action.payload;
+  }
+  return state;
+};
+export const updated = (state = initialState, action) => {
+  if (action.type === "SET_UPDATED_POSTS") {
     if (action.payload) return action.payload;
   }
   return state;

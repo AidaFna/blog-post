@@ -89,7 +89,7 @@ const Manage = () => {
       setErrors(newErrors);
     } else {
       dispatch(allStore.fetchUpdate(title, content, idx));
-      router.push("/posts");
+      handleClose();
     }
   };
 
@@ -308,7 +308,13 @@ const Manage = () => {
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={(e) => handleUpdatePost(e)}>Upload</Button>
+          <Button
+            onClick={(e) => {
+              handleUpdatePost(e);
+            }}
+          >
+            Upload
+          </Button>
         </Modal.Footer>
       </Modal>
       {/* end modal update */}

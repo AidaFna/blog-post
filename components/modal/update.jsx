@@ -52,8 +52,8 @@ const ModalUpdate = (props) => {
       // We got errors!
       setErrors(newErrors);
     } else {
-      // dispatch(allStore.fetchUpdate(title, content, details.id));
-      // router.push("/posts");
+      dispatch(allStore.fetchUpdate(title, content, details.id));
+      props.onHide(event);
     }
   };
 

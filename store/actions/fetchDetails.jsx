@@ -8,8 +8,9 @@ export const fetchDetails = (id) => {
         .then(({ data }) => {
           console.log(data, "details");
           dispatch(setDetails(data));
-          dispatch(setTitle(data.title));
-          dispatch(setContent(data.content));
+          dispatch(setPublished(data.published_at));
+          dispatch(setCreated(data.created_at));
+          dispatch(setUpdated(data.updated_at));
           resolve(data);
         })
         .catch((err) => {
@@ -26,16 +27,23 @@ export const setDetails = (payload) => {
     payload,
   };
 };
-export const setTitle = (payload) => {
+export const setPublished = (payload) => {
   return {
-    type: "SET_TITLE_POSTS",
+    type: "SET_PUBLISHED_POSTS",
     payload,
   };
 };
 
-export const setContent = (payload) => {
+export const setCreated = (payload) => {
   return {
-    type: "SET_CONTENT_POSTS",
+    type: "SET_CREATED_POSTS",
+    payload,
+  };
+};
+
+export const setUpdated = (payload) => {
+  return {
+    type: "SET_UPDATED_POSTS",
     payload,
   };
 };

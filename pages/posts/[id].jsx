@@ -14,6 +14,9 @@ const Details = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const details = useSelector(({ detailsPosts }) => detailsPosts);
+  const published = useSelector(({ published }) => published);
+  const created = useSelector(({ created }) => created);
+  const updated = useSelector(({ updated }) => updated);
 
   useEffect(() => {
     // console.log(details, "details page");
@@ -42,30 +45,24 @@ const Details = () => {
       </Head>
       <Navigation />
       <Container className={styles.main}>
-        <h3>{details.title}</h3>
-        <p align="left">
-          {/* published at{" "}
-          {details.published_at.slice(0, 10) +
-            " " +
-            details.published_at.slice(11, 16)} */}
+        <h3 className={styles.title}>{details.title}</h3>
+        <p align="left" className={styles.muted}>
+          published at{" "}
+          {published.slice(0, 10) + " on " + published.slice(11, 16)}
         </p>
         <p align="justify" className={styles.content}>
           {details.content}
         </p>
-        <Row>
-          {/* <Col md={6} xs={12}>
-            created at{" "}
-            {details.created_at.slice(0, 10) +
-              " " +
-              details.created_at.slice(11, 16)}
-          </Col>
-          <Col md={6} xs={12}>
-            updated at{" "}
-            {details.updated_at.slice(0, 10) +
-              " " +
-              details.updated_at.slice(11, 16)}
-          </Col> */}
-        </Row>
+        <p className={styles.muted}>
+          <Row>
+            <Col md={12} xs={12}>
+              created at {created.slice(0, 10)}
+            </Col>
+            <Col md={12} xs={12}>
+              updated at {updated.slice(0, 10)}
+            </Col>
+          </Row>
+        </p>
       </Container>
 
       <Footer />

@@ -8,6 +8,10 @@
  
 }
 
+.search{
+  justify-content: left;
+  margin-bottom: 30px;
+}
 .loading{
   height: 100vh;
   text-align: center;

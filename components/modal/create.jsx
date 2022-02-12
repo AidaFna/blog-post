@@ -50,7 +50,7 @@ const ModalCreate = (props) => {
       setErrors(newErrors);
     } else {
       dispatch(allStore.fetchCreate(title, content)).then().catch().finally();
-      router.push("/posts");
+      props.onHide(event);
     }
   };
 

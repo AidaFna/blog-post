@@ -1,13 +1,14 @@
 import { combineReducers } from "redux";
 import listPosts from "./listPosts";
-import { detailsPosts, titlePosts, contentPosts } from "./detailsPosts";
+import { detailsPosts, published, created, updated } from "./detailsPosts";
 import createPosts from "./createPost";
 
 const rootReducers = combineReducers({
   listPosts,
   detailsPosts,
-  titlePosts,
-  contentPosts,
+  published,
+  created,
+  updated,
   createPosts,
 });
 export default rootReducers;
