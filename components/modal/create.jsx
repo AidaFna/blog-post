@@ -32,12 +32,12 @@ const ModalCreate = (props) => {
     // title errors
     if (!title || title.trim() === "") newErrors.title = "cannot be blank!";
     else if (title.length > 50)
-      newErrors.name = "title cannot be more than 50 characters!";
+      newErrors.title = "title cannot be more than 50 characters!";
     // content errors
     if (!content || content.trim() === "")
       newErrors.content = "cannot be blank!";
-    else if (content.length > 1000)
-      newErrors.content = "title cannot be more than 1000 characters!";
+    else if (content.length > 5000)
+      newErrors.content = "title cannot be more than 5000 characters!";
     return newErrors;
   };
 
