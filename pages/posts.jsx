@@ -4,19 +4,34 @@ import Link from "next/link";
 import Navigation from "../components/header";
 import Footer from "../components/footer";
 import styles from "../styles/Posts.module.css";
-import { Container, Card, Button } from "react-bootstrap";
+import { Container, Card, Button, Spinner } from "react-bootstrap";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Posts = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const listPosts = useSelector(({ listPosts }) => listPosts);
 
   useEffect(() => {
+    setLoading(true);
     // console.log(listPosts, "posts page");
-    dispatch(allStore.fetchPosts());
-  }, [listPosts]);
+    dispatch(allStore.fetchPosts()).finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return (
+      <>
+        <Navigation />
+        <h5 className={`${styles.loading}`}>
+          <Spinner animation="border" variant="secondary" /> Please wait ...
+        </h5>
+        <Footer></Footer>
+      </>
+    );
+  }
+
   return (
     <>
       <Head>
@@ -37,12 +52,12 @@ const Posts = () => {
               <Link href={`/posts/${el.id}`} className={styles.see}>
                 see more &rarr;
               </Link>
-              <h6 className={styles.publish}>
+              <p className={styles.publish}>
                 published at{" "}
                 {el.published_at.slice(0, 10) +
                   " " +
                   el.published_at.slice(11, 16)}
-              </h6>
+              </p>
             </Card.Body>
           </Card>
         ))}

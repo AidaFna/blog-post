@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
+// import home from "../assets/home/home-header.jfif";
 import Navigation from "../components/header";
 import Footer from "../components/footer";
 import { useRouter } from "next/router";
@@ -20,7 +21,8 @@ const Home = () => {
       <Navigation></Navigation>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to My Blog</h1>
+        <Image src="/home-header.jpg" layout="fill" className={styles.image} />
+        <h1 className={styles.title}>Welcome To My Blog</h1>
         <div className={styles.grid}>
           <Link href={"/posts"}>
             <a className={styles.card}>

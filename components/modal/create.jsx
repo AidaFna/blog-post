@@ -3,29 +3,62 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import allStore from "../../store/actions";
 import { useRouter } from "next/router";
+import { route } from "next/dist/server/router";
 
 const ModalCreate = (props) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const router = useRouter();
   const dispatch = useDispatch();
-  // const createPost = useSelector(({ createPost }) => createPost);
+  // const [title, setTitle] = useState("");
+  // const [content, setContent] = useState("");
+  const [form, setForm] = useState({});
+  const [errors, setErrors] = useState({});
+  const { title, content } = form;
 
-  // useEffect(() => {
-  //   console.log(createPost, "details page");
-  //   dispatch(allStore.fetchDetails(id));
-  // }, [dispatch, id]);
+  const setField = (field, value) => {
+    setForm({
+      ...form,
+      [field]: value,
+    });
+    // Check and see if errors exist, and remove them from the error object:
+    if (!!errors[field])
+      setErrors({
+        ...errors,
+        [field]: null,
+      });
+  };
 
-  const handleCreatePost = () => {
-    // dispatch(allStore.fetchCreate(title, content)).then().catch().finally();
+  const findFormErrors = () => {
+    const newErrors = {};
+    // title errors
+    if (!title || title.trim() === "") newErrors.title = "cannot be blank!";
+    else if (title.length > 50)
+      newErrors.name = "title cannot be more than 50 characters!";
+    // content errors
+    if (!content || content.trim() === "")
+      newErrors.content = "cannot be blank!";
+    else if (content.length > 1000)
+      newErrors.content = "title cannot be more than 1000 characters!";
+    return newErrors;
+  };
+
+  const handleCreatePost = (event) => {
+    event.preventDefault();
+    const newErrors = findFormErrors();
+    // Conditional logic:
+    if (Object.keys(newErrors).length > 0) {
+      // We got errors!
+      setErrors(newErrors);
+    } else {
+      dispatch(allStore.fetchCreate(title, content)).then().catch().finally();
+      router.push("/posts");
+    }
   };
 
   return (
     <>
       <Modal
         show={props.show}
-        onHide={show}
+        onHide={props.onHide}
         backdrop="static"
         keyboard={false}
         size="lg"
@@ -45,8 +78,16 @@ const ModalCreate = (props) => {
                 <Form.Control
                   type="text"
                   placeholder="title post"
-                  onChange={(e) => setTitle(e.target.value)}
+                  autoComplete="off"
+                  autoCapitalize="on"
+                  autoFocus="on"
+                  required
+                  onChange={(e) => setField("title", e.target.value)}
+                  isInvalid={!!errors.title}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {errors.title}
+                </Form.Control.Feedback>
                 <Form.Text className="text-muted">
                   Title must be less than 50 characters.
                 </Form.Text>
@@ -59,8 +100,16 @@ const ModalCreate = (props) => {
                   rows={8}
                   type="text"
                   placeholder="content post"
-                  onChange={(e) => setContent(e.target.value)}
+                  autoComplete="off"
+                  autoCapitalize="on"
+                  autoFocus="on"
+                  required
+                  onChange={(e) => setField("content", e.target.value)}
+                  isInvalid={!!errors.content}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {errors.content}
+                </Form.Control.Feedback>
                 <Form.Text className="text-muted">
                   Content must be less than 1000 characters.
                 </Form.Text>
@@ -69,14 +118,7 @@ const ModalCreate = (props) => {
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            onClick={() => {
-              // handleCreatePost();
-              setShow(false);
-            }}
-          >
-            Upload
-          </Button>
+          <Button onClick={(e) => handleCreatePost(e)}>Upload</Button>
         </Modal.Footer>
       </Modal>
     </>

@@ -1,5 +1,5 @@
 import { fetchPosts, setPosts } from "./fetchPosts";
-import { fetchDetails, setDetails } from "./fetchDetails";
+import { fetchDetails, setDetails, setContent, setTitle } from "./fetchDetails";
 import { fetchCreate, setCreate } from "./fetchCreate";
 import { fetchDelete, setDelete } from "./fetchDelete";
 import { fetchUpdate, setUpdate } from "./fetchUpdate";
@@ -11,6 +11,8 @@ const allStore = {
   // GET DETAILS
   fetchDetails,
   setDetails,
+  setTitle,
+  setContent,
   // POST POST
   fetchCreate,
   setCreate,

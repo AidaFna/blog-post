@@ -1,5 +1,4 @@
 import axios from "axios";
-import swal from "sweetalert";
 
 export const fetchDelete = (id) => {
   return (dispatch) => {
@@ -7,10 +6,7 @@ export const fetchDelete = (id) => {
       axios
         .delete(`https://limitless-forest-49003.herokuapp.com/posts/${id}`)
         .then(({ data }) => {
-          console.log(data, "create");
-          swal("SUCCESS", "Post has been removed!", "success", {
-            button: "Got it!",
-          });
+          // console.log(data, "create");
           resolve(data);
         })
         .catch((err) => {

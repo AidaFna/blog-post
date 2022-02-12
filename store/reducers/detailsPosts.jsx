@@ -1,10 +1,21 @@
 const initialState = [];
 
-const detailsPosts = (state = initialState, action) => {
+export const detailsPosts = (state = initialState, action) => {
   if (action.type === "SET_DETAILS_POSTS") {
     if (action.payload) return action.payload;
   }
   return state;
 };
 
-export default detailsPosts;
+export const titlePosts = (state = initialState, action) => {
+  if (action.type === "SET_TITLE_POSTS") {
+    if (action.payload) return action.payload;
+  }
+  return state;
+};
+export const contentPosts = (state = initialState, action) => {
+  if (action.type === "SET_TITLE_POSTS") {
+    if (action.payload) return action.payload;
+  }
+  return state;
+};

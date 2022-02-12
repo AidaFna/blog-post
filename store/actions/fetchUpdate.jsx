@@ -9,7 +9,7 @@ export const fetchUpdate = (title, content, id) => {
   return (dispatch) => {
     return new Promise((resolve, reject) => {
       axios
-        .post(`https://limitless-forest-49003.herokuapp.com/posts/${id}`, body)
+        .put(`https://limitless-forest-49003.herokuapp.com/posts/${id}`, body)
         .then(({ data }) => {
           console.log(data, "create");
           swal("SUCCESS", "Post has been updated!", "success", {

@@ -5,9 +5,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+ 
 }
 
-.card{
+.loading{
+  height: 100vh;
+  text-align: center;
+  margin-top: 50vh;
+}
+
+.card{ 
+  background-color: whitesmoke;
   border: none;
   width: 80%;
   box-shadow: 2px 2px 10px gray;

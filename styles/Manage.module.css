@@ -6,6 +6,12 @@
   flex-direction: column;
   align-items: center;
 }
+
+.loading{
+  height: 100vh;
+  text-align: center;
+  margin-top: 50vh;
+}
 .listgroup{
   width: 80%;
 }
@@ -15,21 +21,31 @@
 }
 .group{
   width: 80%;
-  display: flex;
   margin-bottom: 20px;
   text-align: left;
 }
 .badge{
   cursor: pointer;
 }
-.preview{
-  height: 300px;
-  white-space: pre-line;
-  overflow: auto;
+.muted{
+  color: gray;
 }
-
 .content{
   height: 50px;
   white-space: pre-line;
   overflow: hidden;
 }
+
+/* MODAL PREVIEW */
+.preview{
+  margin: 50px 20px 20px 20px;
+  height: 300px;
+  white-space: pre-line;
+  overflow: auto;
+}
+
+.prevTitle{
+  text-align: center;
+}
+
+

@@ -24,11 +24,11 @@ const ModalPreview = (props) => {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Previw Post
+            Preview Post
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h2>{details.title}</h2>
+          <h2 className={styles.prevTitle}>{details.title}</h2>
           <p align="justify" className={styles.preview}>
             {details.content}
           </p>
